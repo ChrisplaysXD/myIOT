@@ -36,7 +36,7 @@ async function checkSession() {
     if (path === '/') {
       const navActions = document.getElementById('home-nav-actions');
       if (navActions) {
-        navActions.innerHTML = `<button class="nav-btn nav-btn-fill" onclick="checkUserConfig(currentUser)">Go to Dashboard ➔</button>`;
+        navActions.innerHTML = `<button class="nav-btn nav-btn-fill" id="hero-go-dash">Go to Dashboard ➔</button>`;
       }
       return;
     }
@@ -369,6 +369,9 @@ document.addEventListener('click', async (e) => {
   if (targetId === 'nav-login-btn') window.location.href = '/auth';
   if (targetId === 'nav-signup-btn') window.location.href = '/auth?mode=signup';
   if (targetId === 'hero-get-started') window.location.href = '/auth';
+  if (targetId === 'hero-go-dash') {
+    if (typeof checkUserConfig === 'function') checkUserConfig(currentUser);
+  }
   if (targetId === 'nav-dash-btn') window.location.href = '/dashboard';
   if (targetId === 'nav-admin-btn') window.location.href = '/admin';
   if (targetId === 'settings-btn') window.location.href = '/config';
