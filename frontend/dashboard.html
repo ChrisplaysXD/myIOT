@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myIOT | Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+  <section id="view-dashboard" style="display: flex;">
+
+    <header class="dashboard-header">
+      <div class="header-left">
+        <a href="/" style="text-decoration:none;"><span class="header-brand" style="cursor:pointer">📡 myIOT</span></a>
+        <span id="connection-status" class="status-badge">CONNECTING</span>
+      </div>
+      <div class="header-right">
+        <span id="user-name" class="header-user">---</span>
+        <span id="user-channel" class="header-channel">CH: ---</span>
+        
+        <div class="notif-wrapper">
+          <button id="notif-btn" class="btn-icon notif-btn">🔔 <span id="notif-badge" class="notif-badge hidden">0</span></button>
+          <div id="notif-dropdown" class="notif-dropdown hidden">
+            <h4>Alert History</h4>
+            <ul id="notif-list">
+              <li class="notif-empty">No alerts yet</li>
+            </ul>
+          </div>
+        </div>
+
+        <button id="nav-admin-btn" class="btn-icon hidden">👥 ADMIN</button>
+        <button id="settings-btn" class="btn-icon">⚙ CONFIG</button>
+        <button id="logout-btn" class="btn-icon">⏻ EXIT</button>
+      </div>
+    </header>
+
+    <main class="dashboard-main">
+
+      <div class="token-section">
+        <div class="token-header">
+          <h2>UTILITY TOKEN BALANCE</h2>
+          <span id="last-update" class="last-update">Last: --</span>
+        </div>
+
+        <div id="token-container">
+          <span id="token-balance">1000</span>
+          <span class="token-unit">⚡ TOKENS</span>
+        </div>
+
+        <div class="token-bar">
+          <div id="token-bar-fill" class="token-bar-fill"></div>
+        </div>
+
+        <div class="token-actions">
+          <button id="recharge-btn" class="btn-recharge">🔋 RECHARGE 1000</button>
+        </div>
+      </div>
+
+      <div class="sensor-grid">
+        <div id="card-temp" class="sensor-card">
+          <div class="card-header">
+            <span class="card-label">SUHU</span>
+            <span class="card-icon">🌡️</span>
+          </div>
+          <div id="temp-value" class="card-value">--°C</div>
+          <div id="temp-status" class="card-status">NO DATA</div>
+          <div class="temp-gauge">
+            <div id="temp-gauge-fill" class="temp-gauge-fill"></div>
+          </div>
+        </div>
+
+        <div id="card-light" class="sensor-card">
+          <div class="card-header">
+            <span class="card-label">CAHAYA</span>
+            <span id="light-icon" class="light-bulb"></span>
+          </div>
+          <div id="light-value" class="card-value">--</div>
+          <div id="light-status" class="card-status">NO DATA</div>
+        </div>
+
+        <div id="card-dist" class="sensor-card">
+          <div class="card-header">
+            <span class="card-label">JARAK</span>
+            <span class="card-icon">📏</span>
+          </div>
+          <div id="dist-value" class="card-value">--</div>
+          <div id="dist-status" class="card-status">NO DATA</div>
+        </div>
+
+        <div id="card-motion" class="sensor-card">
+          <div class="card-header">
+            <span class="card-label">DETEKSI GERAK</span>
+            <div id="radar-pulse" class="radar-container radar-pulse">
+              <div class="radar-ring"></div>
+              <div class="radar-ring"></div>
+              <div class="radar-dot"></div>
+            </div>
+          </div>
+          <div id="motion-value" class="card-value">--</div>
+          <div id="motion-status" class="card-status">NO DATA</div>
+        </div>
+
+        <div id="card-air" class="sensor-card">
+          <div class="card-header">
+            <span class="card-label">KUALITAS UDARA</span>
+            <span class="card-icon">💨</span>
+          </div>
+          <div id="air-value" class="card-value">--</div>
+          <div id="air-status" class="card-status">NO DATA</div>
+        </div>
+      </div>
+
+      <div class="analytics-section">
+        <h3>HISTORICAL ANALYTICS</h3>
+        <div class="chart-container">
+          <canvas id="analyticsChart"></canvas>
+        </div>
+      </div>
+
+      <div class="billing-section">
+        <h3>TRANSACTION LOG</h3>
+        <div id="billing-log" class="billing-log"></div>
+      </div>
+
+    </main>
+  </section>
+
+  <script src="js/utils.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

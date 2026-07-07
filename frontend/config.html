@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myIOT | Configuration</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <section id="view-config" style="display: flex;">
+    <div class="config-container">
+      <h2>⚙ DASHBOARD CONFIGURATION</h2>
+      <p class="config-desc">Manage your sensor network and warning thresholds</p>
+
+      <div id="config-error" class="config-error"></div>
+
+      <div class="config-tabs">
+        <button id="tab-thingspeak" class="tab-btn active">ThingSpeak</button>
+        <button id="tab-thresholds" class="tab-btn">Thresholds</button>
+      </div>
+
+      <!-- ThingSpeak Form -->
+      <form id="config-form" class="config-panel">
+        <div class="form-group">
+          <label for="config-channel">Channel ID</label>
+          <input type="text" id="config-channel" placeholder="e.g. 2812345" required>
+        </div>
+        <div class="form-group">
+          <label for="config-apikey">Read API Key</label>
+          <input type="text" id="config-apikey" placeholder="e.g. A1B2C3D4E5F6G7H8" required>
+        </div>
+        <button type="submit" class="btn-primary">CONNECT SENSORS</button>
+        <button type="button" class="btn-secondary" id="config-cancel-btn">CANCEL</button>
+      </form>
+
+      <!-- Thresholds Form -->
+      <form id="threshold-form" class="config-panel hidden">
+        <div class="form-group">
+          <label for="thresh-temp-warn">Suhu Hangat (°C)</label>
+          <input type="number" id="thresh-temp-warn" value="26" required>
+        </div>
+        <div class="form-group">
+          <label for="thresh-temp-alert">Suhu Panas (°C)</label>
+          <input type="number" id="thresh-temp-alert" value="30" required>
+        </div>
+        <div class="form-group">
+          <label for="thresh-air-warn">Udara Kurang Sehat (AQI)</label>
+          <input type="number" id="thresh-air-warn" value="150" required>
+        </div>
+        <div class="form-group">
+          <label for="thresh-air-alert">Udara Berbahaya (AQI)</label>
+          <input type="number" id="thresh-air-alert" value="300" required>
+        </div>
+        <button type="submit" class="btn-primary">SAVE THRESHOLDS</button>
+        <button type="button" class="btn-secondary" id="thresh-cancel-btn">CANCEL</button>
+      </form>
+
+    </div>
+  </section>
+
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

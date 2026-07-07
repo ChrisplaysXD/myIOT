@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="myIOT Dashboard - Real-time IoT environmental monitoring with gamified utility billing">
+  <title>myIOT | Smart Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <section id="view-home" style="display: flex;">
+
+    <nav class="home-navbar">
+      <div class="nav-brand" style="cursor:pointer" id="nav-brand-btn">
+        <span class="nav-logo">📡</span>
+        <span class="nav-title">myIOT</span>
+      </div>
+      <div class="nav-actions" id="home-nav-actions">
+        <button id="nav-login-btn" class="nav-btn nav-btn-outline">Login</button>
+        <button id="nav-signup-btn" class="nav-btn nav-btn-fill">Sign Up</button>
+        <button id="nav-dash-btn" class="nav-btn nav-btn-fill hidden">Go to Dashboard ➔</button>
+      </div>
+    </nav>
+
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">Smart IoT<br><span class="hero-accent">Dashboard</span></h1>
+        <p class="hero-desc">Monitor sensor data secara real-time, kelola penggunaan energi, dan pantau lingkungan — semua dari satu dashboard yang terintegrasi dengan ThingSpeak.</p>
+        <div class="hero-buttons">
+          <button id="hero-get-started" class="btn-primary hero-btn">GET STARTED</button>
+          <button id="hero-learn-more" class="btn-secondary hero-btn">LEARN MORE ↓</button>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-preview-card hpc-1">
+            <span class="hpc-icon">🌡️</span>
+            <span class="hpc-label">Suhu</span>
+            <span class="hpc-value">26.4°C</span>
+          </div>
+          <div class="hero-preview-card hpc-2">
+            <span class="hpc-icon">💡</span>
+            <span class="hpc-label">Cahaya</span>
+            <span class="hpc-value">TERANG</span>
+          </div>
+          <div class="hero-preview-card hpc-3">
+            <span class="hpc-icon">📏</span>
+            <span class="hpc-label">Jarak</span>
+            <span class="hpc-value">12 cm</span>
+          </div>
+          <div class="hero-preview-card hpc-4">
+            <span class="hpc-icon">📡</span>
+            <span class="hpc-label">Deteksi Gerak</span>
+            <span class="hpc-value">AMAN</span>
+          </div>
+          <div class="hero-preview-card hpc-5">
+            <span class="hpc-icon">💨</span>
+            <span class="hpc-label">Kualitas Udara</span>
+            <span class="hpc-value">BAIK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-section" id="features-section">
+      <h2 class="features-title">Kenapa myIOT?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Real-Time Monitoring</h3>
+          <p>Data sensor di-update setiap 20 detik langsung dari ThingSpeak API</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <h3>Secure Authentication</h3>
+          <p>Password hashing, rate limiting, session management, dan proteksi NoSQL injection</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎮</span>
+          <h3>Gamified Billing</h3>
+          <p>Sistem token yang mensimulasikan biaya energi berdasarkan kondisi sensor</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📱</span>
+          <h3>Responsive Design</h3>
+          <p>Tampilan optimal di desktop, tablet, maupun smartphone</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
