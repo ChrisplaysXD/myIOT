@@ -121,7 +121,15 @@
       </div>
 
       <div class="analytics-section">
-        <h3>HISTORICAL ANALYTICS</h3>
+        <div class="analytics-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+          <h3>HISTORICAL ANALYTICS</h3>
+          <div class="chart-controls" style="display: flex; gap: 10px; font-size: 0.9em; color: var(--text-muted);">
+            <label><input type="checkbox" class="chart-toggle" data-index="0" checked> 🌡️ Suhu</label>
+            <label><input type="checkbox" class="chart-toggle" data-index="1" checked> 💧 Kelembapan</label>
+            <label><input type="checkbox" class="chart-toggle" data-index="2" checked> 💨 Udara</label>
+            <label><input type="checkbox" class="chart-toggle" data-index="3"> 📏 Jarak</label>
+          </div>
+        </div>
         <div class="chart-container">
           <canvas id="analyticsChart"></canvas>
         </div>

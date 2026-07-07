@@ -81,6 +81,15 @@ function initChart() {
           fill: true
         },
         {
+          label: 'Kelembapan (%)',
+          data: [],
+          borderColor: '#00d2ff',
+          backgroundColor: 'rgba(0, 210, 255, 0.1)',
+          yAxisID: 'y',
+          tension: 0.4,
+          fill: true
+        },
+        {
           label: 'Kualitas Udara (AQI)',
           data: [],
           borderColor: '#58a6ff',
@@ -88,6 +97,16 @@ function initChart() {
           yAxisID: 'y1',
           tension: 0.4,
           fill: true
+        },
+        {
+          label: 'Jarak (cm)',
+          data: [],
+          borderColor: '#ffb347',
+          backgroundColor: 'rgba(255, 179, 71, 0.1)',
+          yAxisID: 'y',
+          tension: 0.4,
+          fill: true,
+          hidden: true
         }
       ]
     },
@@ -116,6 +135,16 @@ function initChart() {
         }
       }
     }
+  });
+
+  // Bind checkbox toggles
+  document.querySelectorAll('.chart-toggle').forEach(checkbox => {
+    checkbox.addEventListener('change', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const isVisible = e.target.checked;
+      analyticsChart.setDatasetVisibility(index, isVisible);
+      analyticsChart.update();
+    });
   });
 }
 
@@ -167,18 +196,24 @@ function updateAnalyticsChart(feeds) {
   
   const labels = [];
   const tempData = [];
+  const humidData = [];
   const airData = [];
+  const distData = [];
 
   feeds.forEach(feed => {
     const time = new Date(feed.created_at).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute:'2-digit' });
     labels.push(time);
     tempData.push(feed.field1 ? parseFloat(feed.field1) : null);
+    humidData.push(feed.field6 ? parseFloat(feed.field6) : null);
     airData.push(feed.field5 ? parseFloat(feed.field5) : null);
+    distData.push(feed.field3 ? parseFloat(feed.field3) : null);
   });
 
   analyticsChart.data.labels = labels;
   analyticsChart.data.datasets[0].data = tempData;
-  analyticsChart.data.datasets[1].data = airData;
+  analyticsChart.data.datasets[1].data = humidData;
+  analyticsChart.data.datasets[2].data = airData;
+  analyticsChart.data.datasets[3].data = distData;
   analyticsChart.update();
 }
 
