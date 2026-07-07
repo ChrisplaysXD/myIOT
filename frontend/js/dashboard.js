@@ -16,7 +16,8 @@ function initDashboard(config) {
   userThresholds = config.thresholds || {
     tempWarning: 26, tempAlert: 30,
     distWarning: 30, distAlert: 10,
-    airWarning: 150, airAlert: 300
+    airWarning: 150, airAlert: 300,
+    humidWarning: 70, humidAlert: 85
   };
 
   updateTokenDisplay();
@@ -253,6 +254,31 @@ function updateSensorCards(data) {
     tempVal.textContent = '--°C';
     tempStatus.textContent = 'NO DATA';
     if (tempCard) tempCard.className = 'sensor-card';
+  }
+
+  // field6 = humidity (Kelembapan)
+  const humidVal = document.getElementById('humid-value');
+  const humidStatus = document.getElementById('humid-status');
+  const humidCard = document.getElementById('card-humid');
+
+  if (data && data.field6 !== null) {
+    const humid = parseFloat(data.field6);
+    if (humidVal) humidVal.textContent = humid.toFixed(1) + '%';
+
+    if (humid > userThresholds.humidAlert) {
+      if (humidStatus) humidStatus.textContent = 'SANGAT LEMBAP';
+      if (humidCard) humidCard.className = 'sensor-card alert';
+    } else if (humid > userThresholds.humidWarning) {
+      if (humidStatus) humidStatus.textContent = 'LEMBAP';
+      if (humidCard) humidCard.className = 'sensor-card warning';
+    } else {
+      if (humidStatus) humidStatus.textContent = 'NORMAL';
+      if (humidCard) humidCard.className = 'sensor-card good';
+    }
+  } else {
+    if (humidVal) humidVal.textContent = '--%';
+    if (humidStatus) humidStatus.textContent = 'NO DATA';
+    if (humidCard) humidCard.className = 'sensor-card';
   }
 
   // field2 = light (Cahaya, 0=terang/bright, 1=gelap/dark)
