@@ -154,6 +154,20 @@ function initConfigForm() {
   document.getElementById('config-cancel-btn').onclick = () => {
     if (currentUser && currentUser.thingspeak?.channelId) window.location.href = '/dashboard';
   };
+  
+  const skipBtn = document.getElementById('config-skip-btn');
+  if (skipBtn) {
+    skipBtn.onclick = async () => {
+      try {
+        await apiFetch('/api/config', { method: 'PUT', body: { channelId: '0', readApiKey: 'skip' } });
+        window.location.href = '/dashboard';
+      } catch (err) {
+        errorEl.textContent = err.message;
+        errorEl.classList.add('visible');
+      }
+    };
+  }
+
   document.getElementById('thresh-cancel-btn').onclick = () => {
     if (currentUser && currentUser.thingspeak?.channelId) window.location.href = '/dashboard';
   };
