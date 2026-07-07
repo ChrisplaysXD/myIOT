@@ -151,6 +151,11 @@ function initConfigForm() {
     document.getElementById('thresh-air-alert').value = currentUser.thresholds.airAlert;
   }
 
+  const tsForm = document.getElementById('config-form');
+  const newTsForm = tsForm.cloneNode(true);
+  tsForm.parentNode.replaceChild(newTsForm, tsForm);
+
+  // Bind buttons after cloning
   document.getElementById('config-cancel-btn').onclick = () => {
     if (currentUser && currentUser.thingspeak?.channelId) {
       window.location.href = '/dashboard';
@@ -158,7 +163,7 @@ function initConfigForm() {
       window.location.href = '/';
     }
   };
-  
+
   const skipBtn = document.getElementById('config-skip-btn');
   if (skipBtn) {
     skipBtn.onclick = async () => {
@@ -166,23 +171,14 @@ function initConfigForm() {
         await apiFetch('/api/config', { method: 'PUT', body: { channelId: '0', readApiKey: 'skip' } });
         window.location.href = '/dashboard';
       } catch (err) {
-        errorEl.textContent = err.message;
-        errorEl.classList.add('visible');
+        const errorEl = document.getElementById('config-error');
+        if (errorEl) {
+          errorEl.textContent = err.message;
+          errorEl.classList.add('visible');
+        }
       }
     };
   }
-
-  document.getElementById('thresh-cancel-btn').onclick = () => {
-    if (currentUser && currentUser.thingspeak?.channelId) {
-      window.location.href = '/dashboard';
-    } else {
-      window.location.href = '/';
-    }
-  };
-
-  const tsForm = document.getElementById('config-form');
-  const newTsForm = tsForm.cloneNode(true);
-  tsForm.parentNode.replaceChild(newTsForm, tsForm);
 
   newTsForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -200,6 +196,15 @@ function initConfigForm() {
   const thForm = document.getElementById('threshold-form');
   const newThForm = thForm.cloneNode(true);
   thForm.parentNode.replaceChild(newThForm, thForm);
+
+  // Bind threshold cancel button after cloning
+  document.getElementById('thresh-cancel-btn').onclick = () => {
+    if (currentUser && currentUser.thingspeak?.channelId) {
+      window.location.href = '/dashboard';
+    } else {
+      window.location.href = '/';
+    }
+  };
 
   newThForm.addEventListener('submit', async (e) => {
     e.preventDefault();
