@@ -63,8 +63,9 @@ function initChart() {
   const ctx = document.getElementById('analyticsChart');
   if (!ctx) return;
   
-  Chart.defaults.color = '#8b949e';
-  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.color = '#00ffcc';
+  Chart.defaults.font.family = "'VT323', monospace";
+  Chart.defaults.font.size = 14;
 
   analyticsChart = new Chart(ctx, {
     type: 'line',

@@ -1,32 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
 /* ============ DESIGN TOKENS ============ */
 :root {
-  --bg-primary: #06080f;
-  --bg-secondary: #0c1120;
-  --bg-card: rgba(14, 22, 45, 0.75);
-  --bg-card-hover: rgba(20, 30, 60, 0.85);
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-card: #0a0a0a;
+  --bg-card-hover: #1a1a1a;
 
-  --color-cyan: #00e5ff;
-  --color-cyan-dim: #00a3b4;
-  --color-amber: #ffab00;
-  --color-amber-dim: #b37800;
-  --color-good: #00e676;
-  --color-alert: #ff1744;
-  --color-alert-dim: #b71c1c;
-  --color-purple: #d500f9;
-  --color-white: #e8eaf6;
-  --color-muted: #5c6b8a;
+  --color-cyan: #00ffcc;
+  --color-cyan-dim: #00aa88;
+  --color-amber: #ffcc00;
+  --color-amber-dim: #cc9900;
+  --color-good: #33ff33;
+  --color-alert: #ff0055;
+  --color-alert-dim: #aa0033;
+  --color-purple: #ff00ff;
+  --color-white: #ffffff;
+  --color-muted: #aaaaaa;
 
-  --glass-border: rgba(255, 255, 255, 0.06);
-  --glass-blur: 16px;
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: 0px;
 
-  --font-display: 'Orbitron', monospace;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Press Start 2P', monospace;
+  --font-body: 'VT323', monospace;
 
-  --radius: 12px;
-  --radius-lg: 18px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 0px;
+  --radius-lg: 0px;
+  --transition: 0.1s step-end;
 }
 
 /* ============ RESET & BASE ============ */
@@ -54,14 +54,11 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(0, 229, 255, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(213, 0, 249, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(255, 171, 0, 0.02) 0%, transparent 50%);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    linear-gradient(rgba(0, 255, 204, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 204, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
   pointer-events: none;
   z-index: 0;
 }
@@ -139,15 +136,16 @@ body::before {
 }
 
 .nav-btn-fill {
-  background: linear-gradient(135deg, var(--color-cyan), var(--color-cyan-dim));
-  border: none;
+  background: var(--color-cyan);
+  border: 2px solid var(--color-white);
   color: var(--bg-primary);
   font-weight: 700;
+  box-shadow: 4px 4px 0px var(--color-cyan-dim);
 }
 
 .nav-btn-fill:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--color-cyan-dim);
 }
 
 
@@ -503,10 +501,10 @@ body::before {
 .btn-primary {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, var(--color-cyan), var(--color-cyan-dim));
+  background: var(--color-cyan);
   color: var(--bg-primary);
-  border: none;
-  border-radius: 8px;
+  border: 2px solid var(--color-white);
+  border-radius: 0;
   font-family: var(--font-display);
   font-size: 0.8rem;
   font-weight: 700;
@@ -514,15 +512,17 @@ body::before {
   cursor: pointer;
   transition: var(--transition);
   margin-top: 8px;
+  box-shadow: 4px 4px 0px var(--color-cyan-dim);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(0, 229, 255, 0.3);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--color-cyan-dim);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px transparent;
 }
 
 .btn-primary:disabled {
