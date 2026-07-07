@@ -1,11 +1,25 @@
-# Penjelasan Struktur File HTML dan Javascript
+# Penjelasan Struktur Proyek myIOT
 
-# Penjelasan Struktur Proyek (Dari Frontend ke Backend)
+Penjelasan file dari depan (tampilan) hingga ke belakang (server).
 
-Kalau kita mau menderetkan semuanya dari ujung ke ujung, daftarnya bisa dibagi mulai dari sisi antarmuka, penggerak logika, sampai ke server di belakang layar.
+**LAPISAN TAMPILAN (HTML)**
+`index.html` : Halaman pendaratan awal yang ringan.
+`auth.html` : Antarmuka khusus untuk login dan registrasi.
+`dashboard.html` : Menampilkan grafik pergerakan sensor dan sisa token.
+`config.html` : Wadah pengaturan ambang batas sensor dan API key.
+`admin.html` : Panel eksklusif untuk admin memanajemen data pengguna lain.
 
-Di lapisan paling depan atau kerangka tampilan, terdapat `index.html` yang berfungsi murni sebagai halaman promosi awal tanpa beban berat. Menemani itu ada `auth.html` sebagai wadah form masuk akun, `dashboard.html` untuk memantau pergerakan grafik sensor IoT secara langsung, `config.html` tempat menyimpan kunci rahasia API, serta `admin.html` khusus untuk panel manajemen pengguna.
+**LAPISAN PENGGERAK KLIEN (JAVASCRIPT FRONTEND)**
+`utils.js` : Alat bantu serbaguna untuk menarik data (fetch) dari backend.
+`app.js` : Mengendalikan navigasi klik dan menjaga status sesi akun tetap hidup.
+`auth.js` : Menangani proses pengiriman formulir saat user login.
+`config.js` : Mengirim pembaruan pengaturan peringatan sensor.
+`dashboard.js` : Otak utama yang sangat sibuk menarik data ThingSpeak tiap beberapa detik dan mengurangi saldo token.
 
-Masuk ke lapisan penggeraknya di sisi klien, `utils.js` hadir sebagai alat serbaguna untuk mengatur komunikasi jaringan ke server. Navigasi global dan urusan sesi dijaga penuh oleh `app.js` supaya lebih aman dari blokir browser. Logika spesifik form ditangani `auth.js` saat masuk akun dan `config.js` saat menyimpan pengaturan. Terakhir ada `dashboard.js` yang paling sibuk karena harus menarik data sensor secara berkala langsung dari ThingSpeak sekaligus memotong saldo token pengguna.
-
-Bergeser jauh ke belakang di sisi server, pondasi utamanya berdiri di file `server.js` yang mengatur jalan masuk semua permintaan. Sebelum permintaan diproses, sistem keamanannya dijaga oleh middleware `auth.js` untuk memastikan siapa yang login, dibantu `rateLimiter.js` untuk menendang akses yang terlalu brutal atau spam. Setelah lolos, permintaan baru diserahkan ke rute spesifik yaitu `routes/auth.js` untuk urusan validasi akun, `routes/config.js` untuk mengamankan data rahasia IoT, dan `routes/admin.js` yang khusus melayani hapus atau ubah data pengguna dari panel admin.
+**LAPISAN SERVER (BACKEND NODE.JS)**
+`server.js` : Gerbang pusat yang menghidupkan server dan mengatur rute awal.
+`middleware/auth.js` : Satpam pemeriksa yang memastikan user memang sudah login sebelum lanjut.
+`middleware/rateLimiter.js` : Penjaga dari serangan spam klik yang terlalu brutal.
+`routes/auth.js` : Menangani logika cek kata sandi saat login.
+`routes/config.js` : Tempat menyimpan pembaruan API key dan konfigurasi sensor ke database.
+`routes/admin.js` : Jalur akses khusus admin untuk mengambil seluruh data user.
