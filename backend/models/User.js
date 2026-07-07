@@ -37,7 +37,9 @@ const userSchema = new mongoose.Schema({
     distWarning: { type: Number, default: 30 },
     distAlert: { type: Number, default: 10 },
     airWarning: { type: Number, default: 150 },
-    airAlert: { type: Number, default: 300 }
+    airAlert: { type: Number, default: 300 },
+    humidWarning: { type: Number, default: 70 },
+    humidAlert: { type: Number, default: 85 }
   },
   tokenBalance: { type: Number, default: 1000 },
   lockedUntil:  { type: Date, default: null },

@@ -149,6 +149,12 @@ function initConfigForm() {
     document.getElementById('thresh-temp-alert').value = currentUser.thresholds.tempAlert;
     document.getElementById('thresh-air-warn').value = currentUser.thresholds.airWarning;
     document.getElementById('thresh-air-alert').value = currentUser.thresholds.airAlert;
+    
+    // Add humidity defaults safely
+    const humidWarn = document.getElementById('thresh-humid-warn');
+    const humidAlert = document.getElementById('thresh-humid-alert');
+    if (humidWarn) humidWarn.value = currentUser.thresholds.humidWarning || 70;
+    if (humidAlert) humidAlert.value = currentUser.thresholds.humidAlert || 85;
   }
 
   const tsForm = document.getElementById('config-form');
@@ -212,8 +218,17 @@ function initConfigForm() {
     const tempAlert = parseFloat(document.getElementById('thresh-temp-alert').value);
     const airWarning = parseFloat(document.getElementById('thresh-air-warn').value);
     const airAlert = parseFloat(document.getElementById('thresh-air-alert').value);
+    
+    const hWarnEl = document.getElementById('thresh-humid-warn');
+    const hAlertEl = document.getElementById('thresh-humid-alert');
+    const humidWarning = hWarnEl ? parseFloat(hWarnEl.value) : 70;
+    const humidAlert = hAlertEl ? parseFloat(hAlertEl.value) : 85;
+
     try {
-      await apiFetch('/api/config/thresholds', { method: 'PUT', body: { tempWarning, tempAlert, airWarning, airAlert } });
+      await apiFetch('/api/config/thresholds', { 
+        method: 'PUT', 
+        body: { tempWarning, tempAlert, airWarning, airAlert, humidWarning, humidAlert } 
+      });
       window.location.href = '/dashboard';
     } catch (err) {
       errorEl.textContent = err.message;

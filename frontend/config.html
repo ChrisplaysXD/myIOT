@@ -36,23 +36,38 @@
 
       <!-- Thresholds Form -->
       <form id="threshold-form" class="config-panel hidden">
+        
+        <h4 style="color: var(--color-primary); margin-bottom: 10px; margin-top: 5px;">🌡️ Suhu (Temperature)</h4>
         <div class="form-group">
-          <label for="thresh-temp-warn">Suhu Hangat (°C)</label>
+          <label for="thresh-temp-warn">Batas Peringatan (°C)</label>
           <input type="number" id="thresh-temp-warn" value="26" required>
         </div>
         <div class="form-group">
-          <label for="thresh-temp-alert">Suhu Panas (°C)</label>
+          <label for="thresh-temp-alert">Batas Kritis (°C)</label>
           <input type="number" id="thresh-temp-alert" value="30" required>
         </div>
+
+        <h4 style="color: var(--color-secondary); margin-bottom: 10px; margin-top: 15px;">💧 Kelembapan (Humidity)</h4>
         <div class="form-group">
-          <label for="thresh-air-warn">Udara Kurang Sehat (AQI)</label>
+          <label for="thresh-humid-warn">Batas Peringatan (%)</label>
+          <input type="number" id="thresh-humid-warn" value="70" required>
+        </div>
+        <div class="form-group">
+          <label for="thresh-humid-alert">Batas Kritis (%)</label>
+          <input type="number" id="thresh-humid-alert" value="85" required>
+        </div>
+
+        <h4 style="color: var(--color-accent); margin-bottom: 10px; margin-top: 15px;">💨 Kualitas Udara (Air Quality)</h4>
+        <div class="form-group">
+          <label for="thresh-air-warn">Batas Peringatan (AQI)</label>
           <input type="number" id="thresh-air-warn" value="150" required>
         </div>
         <div class="form-group">
-          <label for="thresh-air-alert">Udara Berbahaya (AQI)</label>
+          <label for="thresh-air-alert">Batas Kritis (AQI)</label>
           <input type="number" id="thresh-air-alert" value="300" required>
         </div>
-        <button type="submit" class="btn-primary">SAVE THRESHOLDS</button>
+
+        <button type="submit" class="btn-primary" style="margin-top: 20px;">SAVE THRESHOLDS</button>
         <button type="button" class="btn-secondary" id="thresh-cancel-btn">CANCEL</button>
       </form>
 

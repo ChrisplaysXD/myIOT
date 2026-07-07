@@ -20,7 +20,8 @@ router.get('/', requireAuth, async (req, res) => {
       thresholds: user.thresholds || {
         tempWarning: 26, tempAlert: 30,
         distWarning: 30, distAlert: 10,
-        airWarning: 150, airAlert: 300
+        airWarning: 150, airAlert: 300,
+        humidWarning: 70, humidAlert: 85
       }
     });
   } catch (err) {
@@ -89,8 +90,8 @@ router.put('/tokens', requireAuth, async (req, res) => {
 // PUT /api/config/thresholds - update sensor thresholds
 router.put('/thresholds', requireAuth, async (req, res) => {
   try {
-    const { tempWarning, tempAlert, distWarning, distAlert, airWarning, airAlert } = req.body;
-    
+    const { tempWarning, tempAlert, distWarning, distAlert, airWarning, airAlert, humidWarning, humidAlert } = req.body;
+
     // validasi data kalo perlu
     const user = await User.findById(req.session.userId);
     if (!user) {
@@ -103,6 +104,8 @@ router.put('/thresholds', requireAuth, async (req, res) => {
     if (distAlert !== undefined) user.thresholds.distAlert = distAlert;
     if (airWarning !== undefined) user.thresholds.airWarning = airWarning;
     if (airAlert !== undefined) user.thresholds.airAlert = airAlert;
+    if (humidWarning !== undefined) user.thresholds.humidWarning = humidWarning;
+    if (humidAlert !== undefined) user.thresholds.humidAlert = humidAlert;
     
     await user.save();
     
