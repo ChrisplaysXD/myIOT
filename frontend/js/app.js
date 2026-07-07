@@ -152,7 +152,11 @@ function initConfigForm() {
   }
 
   document.getElementById('config-cancel-btn').onclick = () => {
-    if (currentUser && currentUser.thingspeak?.channelId) window.location.href = '/dashboard';
+    if (currentUser && currentUser.thingspeak?.channelId) {
+      window.location.href = '/dashboard';
+    } else {
+      window.location.href = '/';
+    }
   };
   
   const skipBtn = document.getElementById('config-skip-btn');
@@ -169,7 +173,11 @@ function initConfigForm() {
   }
 
   document.getElementById('thresh-cancel-btn').onclick = () => {
-    if (currentUser && currentUser.thingspeak?.channelId) window.location.href = '/dashboard';
+    if (currentUser && currentUser.thingspeak?.channelId) {
+      window.location.href = '/dashboard';
+    } else {
+      window.location.href = '/';
+    }
   };
 
   const tsForm = document.getElementById('config-form');
