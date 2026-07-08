@@ -1363,11 +1363,30 @@ body::before {
   }
 
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .hero-btn, .btn-secondary {
+    width: 100% !important;
   }
 
   .hero-card-stack {
-    max-width: 300px;
+    max-width: 320px;
+  }
+
+  .hpc-value {
+    font-size: 0.9rem;
+  }
+
+  .hpc-label {
+    font-size: 0.5rem;
   }
 
   .home-navbar {
