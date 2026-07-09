@@ -81,11 +81,11 @@ void loop() {
   long duration = pulseIn(ECHO_PIN, HIGH, 20000); 
   int jarak = (duration == 0) ? 0 : (duration * 0.034 / 2);
 
-  // nah ini logicnya, rcwl itu tembus tembok jadi gampang false alarm
-  // kita akalin pake ultrasonik. anggap ada orang kalo radar kedetek DAN jarak < 150cm
+  // nah ini logicnya, radar itu cuma deteksi orang yang "bergerak". klo diem dia bakal 0.
+  // jadi kita akalin: anggep ada orang kalo (jarak < 80cm) ATAU (radar gerak DAN jarak < 150cm)
   int gerakRaw = digitalRead(RCWL_PIN);
   int gerak = 0;
-  if (gerakRaw == 1 && jarak > 0 && jarak < 150) {
+  if ((jarak > 0 && jarak < 80) || (gerakRaw == 1 && jarak > 0 && jarak < 150)) {
     gerak = 1;
   }
 
@@ -113,7 +113,7 @@ void loop() {
   Serial.println("Lembap : " + String(kelembapan) + " %");
   Serial.println("Cahaya : " + String(cahaya ? "Gelap (Dark)" : "Terang (Bright)"));
   Serial.println("Jarak  : " + String(jarak) + " cm");
-  Serial.println("Gerak  : " + String(gerak ? "Ada Orang!" : "Kosong"));
+  Serial.println("Gerak  : " + String(gerak ? "Ada Orang!" : "Kosong") + " (Radar Mentah: " + String(gerakRaw) + ")");
   Serial.println("Udara  : " + String(kualitasUdara) + " (ADC)");
 
   // if ((millis() - waktuTerakhir) > jedaPengiriman) {
