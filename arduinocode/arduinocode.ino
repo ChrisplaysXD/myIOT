@@ -90,22 +90,34 @@ void loop() {
   }
 
   // Manipulasi kursor kordinat piksel untuk TFT_eSPI
+  // Pake warna-warni biar layarnya ga ngebosenin
   tft.setCursor(10, 10);
+  tft.setTextColor(TFT_ORANGE, TFT_BLACK);
   tft.print("Suhu: " + String(suhu) + " C    ");
   
   tft.setCursor(10, 40);
+  tft.setTextColor(TFT_YELLOW, TFT_BLACK);
   tft.print(cahaya ? "Lampu: Dark     " : "Lampu: Bright   ");
   
   tft.setCursor(10, 70);
+  tft.setTextColor(TFT_CYAN, TFT_BLACK);
   tft.print("Jarak: " + String(jarak) + " cm   ");
   
   tft.setCursor(10, 100);
-  tft.print(gerak ? "Status: Ada Orang  " : "Status: Kosong     ");
+  if (gerak) {
+    tft.setTextColor(TFT_RED, TFT_BLACK); // merah klo ada orang
+    tft.print("Status: Ada Orang  ");
+  } else {
+    tft.setTextColor(TFT_GREEN, TFT_BLACK); // ijo klo aman
+    tft.print("Status: Kosong     ");
+  }
   
   tft.setCursor(10, 130);
+  tft.setTextColor(TFT_MAGENTA, TFT_BLACK);
   tft.print("Udara: " + String(kualitasUdara) + "      ");
   
   tft.setCursor(10, 160);
+  tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.print("Lembap: " + String(kelembapan) + " %    ");
 
   Serial.println("\n[ DATA SENSOR ]");
